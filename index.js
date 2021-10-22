@@ -13,6 +13,10 @@ app.get('/', (_request, response) => {
 
 app.use(bodyParser.json());
 
+app.get('/products', ProductsController.getAll);
+
+app.get('/products/:id', ProductsController.findById);
+
 app.post('/products', ProductsController.insertOne);
 
 app.use(errorMiddleware);

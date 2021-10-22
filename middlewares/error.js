@@ -8,6 +8,7 @@ module.exports = (err, _req, res, _next) => {
         message: err.details[0].message,
       },
     };
+
     return res.status(UNPROCESSABLE_ENTITY_422).json(error);
   }
 
