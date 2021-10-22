@@ -9,6 +9,13 @@ const insertOne = async (name, quantity) => (
     .then((data) => ({ _id: data.insertedId, name, quantity }))
 );
 
+const updateOne = async (id, name, quantity) => (
+  connection()
+    .then((db) => db.collection(collectionName)
+      .updateOne({ _id: new ObjectId(id) }, { $set: { name, quantity } }))
+    .then(() => ({ _id: id, name, quantity }))
+);
+
 const findByName = async (name) => {
   const product = connection()
     .then((db) => db.collection(collectionName).findOne({ name }));
@@ -39,4 +46,5 @@ module.exports = {
   findByName,
   getAll,
   findById,
+  updateOne,
 };

@@ -19,6 +19,8 @@ app.get('/products/:id', ProductsController.findById);
 
 app.post('/products', ProductsController.insertOne);
 
+app.put('/products/:id', ProductsController.updateOne);
+
 app.use(errorMiddleware);
 
 app.listen(PORT, () => console.log(`Online, port: ${PORT}`));

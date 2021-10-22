@@ -15,6 +15,21 @@ const insertOne = async (name, quantity) => {
   return ProductsModel.insertOne(name, quantity);
 };
 
+const updateOne = async (id, name, quantity) => {
+  const productExists = await ProductsModel.findById(id);
+
+  if (!productExists) {
+    return {
+      error: {
+        code: 'invalid_data',
+        message: 'Wrong id format',
+      },
+    };
+  }
+
+  return ProductsModel.updateOne(id, name, quantity);
+};
+
 const getAll = async () => (
   ProductsModel.getAll()
 );
@@ -38,4 +53,5 @@ module.exports = {
   insertOne,
   getAll,
   findById,
+  updateOne,
 };
