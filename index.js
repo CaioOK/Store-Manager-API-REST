@@ -1,8 +1,20 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const ProductsController = require('./controllers/Products');
+const errorMiddleware = require('./middlewares/error');
 
 const app = express();
+const PORT = process.env.PORT || 3000;
 
 // não remova esse endpoint, e para o avaliador funcionar
 app.get('/', (_request, response) => {
   response.send();
 });
+
+app.use(bodyParser.json());
+
+app.post('/products', ProductsController.insertOne);
+
+app.use(errorMiddleware);
+
+app.listen(PORT, () => console.log(`Online, port: ${PORT}`));
