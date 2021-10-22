@@ -16,6 +16,12 @@ const updateOne = async (id, name, quantity) => (
     .then(() => ({ _id: id, name, quantity }))
 );
 
+const deleteOne = async (id) => (
+  connection()
+    .then((db) => db.collection(collectionName)
+      .deleteOne({ _id: new ObjectId(id) }))
+);
+
 const findByName = async (name) => {
   const product = connection()
     .then((db) => db.collection(collectionName).findOne({ name }));
@@ -47,4 +53,5 @@ module.exports = {
   getAll,
   findById,
   updateOne,
+  deleteOne,
 };

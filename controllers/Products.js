@@ -44,6 +44,16 @@ const updateOne = rescue(async (req, res, next) => {
   res.status(OK_200).json(edditedProduct);
 });
 
+const deleteOne = rescue(async (req, res, next) => {
+  const { id } = req.params;
+
+  const deletedProduct = await ProductsService.deleteOne(id);
+
+  if (deletedProduct.error) return next(deletedProduct.error);
+
+  res.status(OK_200).json(deletedProduct);
+});
+
 const getAll = rescue(async (_req, res) => {
   const products = await ProductsService.getAll();
 
@@ -64,4 +74,5 @@ module.exports = {
   getAll,
   findById,
   updateOne,
+  deleteOne,
 };

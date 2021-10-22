@@ -21,6 +21,8 @@ app.post('/products', ProductsController.insertOne);
 
 app.put('/products/:id', ProductsController.updateOne);
 
+app.delete('/products/:id', ProductsController.deleteOne);
+
 app.use(errorMiddleware);
 
 app.listen(PORT, () => console.log(`Online, port: ${PORT}`));
