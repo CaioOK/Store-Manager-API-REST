@@ -7,6 +7,7 @@ const OPTIONS = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 };
+
 let db = null;
 
 const connection = () => (
