@@ -23,13 +23,30 @@ const insertOne = rescue(async (req, res, next) => {
 
   if (error) return next(ERROR);
 
-  const sales = await SalesService.insertOne(itensSold);
+  const sale = await SalesService.insertOne(itensSold);
 
-  if (sales.error) return next(sales.error);
+  if (sale.error) return next(sale.error);
 
-  res.status(OK_200).json(sales);
+  res.status(OK_200).json(sale);
+});
+
+const getAll = rescue(async (_req, res) => {
+  const sales = await SalesService.getAll();
+
+  res.status(OK_200).json({ sales });
+});
+
+const findById = rescue(async (req, res, next) => {
+  const { id } = req.params;
+  const sale = await SalesService.findById(id);
+
+  if (sale.error) return next(sale.error);
+
+  res.status(OK_200).json(sale);
 });
 
 module.exports = {
   insertOne,
+  getAll,
+  findById,
 };

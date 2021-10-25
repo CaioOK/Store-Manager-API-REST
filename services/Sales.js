@@ -16,7 +16,7 @@ const productValidation = async (itensSold) => {
 };
 
 const insertOne = async (itensSold) => {
-  const sales = await SalesModel.insertOne(itensSold);
+  const sale = await SalesModel.insertOne(itensSold);
   const allValid = await productValidation(itensSold);
 
   if (!allValid) {
@@ -28,9 +28,30 @@ const insertOne = async (itensSold) => {
     };
   }
 
-  return sales;
+  return sale;
+};
+
+const getAll = async () => (
+  SalesModel.getAll()
+);
+
+const findById = async (id) => {
+  const sale = await SalesModel.findById(id);
+
+  if (!sale) {
+    return {
+      error: {
+        code: 'not_found',
+        message: 'Sale not found',
+      },
+    };
+  }
+
+  return sale;
 };
 
 module.exports = {
   insertOne,
+  getAll,
+  findById,
 };

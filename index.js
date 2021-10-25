@@ -24,6 +24,10 @@ app.put('/products/:id', ProductsController.updateOne);
 
 app.delete('/products/:id', ProductsController.deleteOne);
 
+app.get('/sales', SalesController.getAll);
+
+app.get('/sales/:id', SalesController.findById);
+
 app.post('/sales', SalesController.insertOne);
 
 app.use(errorMiddleware);
