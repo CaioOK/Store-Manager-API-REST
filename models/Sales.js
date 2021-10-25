@@ -25,29 +25,29 @@ const findById = async (id) => {
   return sale;
 };
 
+const updateOne = async (id, itensSold) => (
+  connection()
+    .then((db) => db.collection(collectionName)
+    .updateOne({ _id: new ObjectId(id) }, { $set: { itensSold } }))
+    .then(() => ({ _id: id, itensSold }))
+);
+
 module.exports = {
   insertOne,
   getAll,
   findById,
+  updateOne,
 };
 
 // const data = [
 //   {
-//     productId: 'product_id',
-//     quantity: 'product_quantity',
-//   },
-//   {
-//     productId: 'product_id2',
-//     quantity: 'product_quantity2',
-//   },
-//   {
-//     productId: 'product_id3',
-//     quantity: 'product_quantity3',
+//     productId: '6175f0003b1dba66f97544ca',
+//     quantity: 99,
 //   },
 // ];
 
 // const test = async () => {
-//   const result = await insertMany(data);
+//   const result = await updateOne('6175fcbcb7271f73c1fb2549', data);
 
 //   console.log(result);
 // };

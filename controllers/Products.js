@@ -37,11 +37,11 @@ const updateOne = rescue(async (req, res, next) => {
   const { name, quantity } = req.body;
   const { id } = req.params;
 
-  const edditedProduct = await ProductsService.updateOne(id, name, quantity);
+  const updatedProduct = await ProductsService.updateOne(id, name, quantity);
 
-  if (edditedProduct.error) return next(edditedProduct.error);
+  if (updatedProduct.error) return next(updatedProduct.error);
 
-  res.status(OK_200).json(edditedProduct);
+  res.status(OK_200).json(updatedProduct);
 });
 
 const deleteOne = rescue(async (req, res, next) => {

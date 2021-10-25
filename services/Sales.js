@@ -50,8 +50,26 @@ const findById = async (id) => {
   return sale;
 };
 
+const updateOne = async (id, itensSold) => {
+  const saleExists = await SalesModel.findById(id);
+  
+  if (!saleExists) {
+    return {
+      error: {
+        code: 'invalid_data',
+        message: 'Wrong id format',
+      },
+    };
+  }
+
+  const updatedSale = await SalesModel.updateOne(id, itensSold);
+
+  return updatedSale;
+};
+
 module.exports = {
   insertOne,
   getAll,
   findById,
+  updateOne,
 };
