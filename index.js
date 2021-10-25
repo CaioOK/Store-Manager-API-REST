@@ -28,9 +28,11 @@ app.get('/sales', SalesController.getAll);
 
 app.get('/sales/:id', SalesController.findById);
 
+app.post('/sales', SalesController.insertOne);
+
 app.put('/sales/:id', SalesController.updateOne);
 
-app.post('/sales', SalesController.insertOne);
+app.delete('/sales/:id', SalesController.deleteOne);
 
 app.use(errorMiddleware);
 

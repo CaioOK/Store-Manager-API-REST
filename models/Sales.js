@@ -32,11 +32,17 @@ const updateOne = async (id, itensSold) => (
     .then(() => ({ _id: id, itensSold }))
 );
 
+const deleteOne = async (id) => (
+  connection()
+    .then((db) => db.collection(collectionName).deleteOne({ _id: new ObjectId(id) }))
+);
+
 module.exports = {
   insertOne,
   getAll,
   findById,
   updateOne,
+  deleteOne,
 };
 
 // const data = [
